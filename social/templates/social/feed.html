@@ -1,0 +1,20 @@
+{% extends 'social/layout.html' %}
+{% load humanize %}
+{% block content %}
+
+{% for post in posts %}
+<article>
+    <div class="container-article">
+        <img src="{{ post.user.profile.image.url }}"> <!--Se accede de forma dinamica -->
+        <div>
+            <h2 class="username"><a href="{% url 'profile' post.user.username %}">@{{ post.user.username }}</a></h2>
+            <i class="clock"></i>
+            <time data-time="#">{{ post.timestamp|naturaltime }}</time><!--*permite ver hace cuanto se realizo el comentario--> 
+            <div class="post">{{ post.content }}</div>
+        </div>
+    </div>
+</article>
+
+{% endfor %}
+
+{% endblock %}
